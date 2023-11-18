@@ -1,9 +1,9 @@
 #include <iostream>
 #include <string>
 #include <vector>
-//teste
-using namespace std;
 
+using namespace std;
+//sadgdfgdsfg
 class databaseInfo {
 public:
 	vector<string> tableClasses = { "druid", "mage", "warlock", "roge", "paladin" };
