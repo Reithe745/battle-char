@@ -3,7 +3,7 @@
 #include <vector>
 
 using namespace std;
-//sadgdfgdsfg
+
 class databaseInfo {
 public:
 	vector<string> tableClasses = { "druid", "mage", "warlock", "roge", "paladin" };
@@ -11,6 +11,9 @@ public:
 
 	//validades if class exist in game
 	bool Table_classExist(string playClass) {
+
+		string test;
+
 
 		for (int i = 0; i < tableClasses.size(); i++) {
 			if (playClass == tableClasses[i]) {
@@ -87,7 +90,7 @@ int MENUOptions() {
 	system("cls");
 	cout << "Wellcome to the game" << endl;
 	cout << "1 - Create new character" << endl;
-	cout << "2 - Play with a random character" << endl;
+	cout << "2 - Play (if no character is selected, a random one will be given)" << endl;
 	cout << "3 - Credits" << endl;
 	cin >> op;
 	cin.clear();
@@ -101,13 +104,16 @@ int MENUOptions() {
 void MENU(playerChar * player) {
 	
 	string initClass = "";
-	int menuOption = 0;
+	int menuOptionSelected = 0;
 
-	while (menuOption == 0) {
-		menuOption = MENUOptions();
+	while (true) {
+		menuOptionSelected = MENUOptions();
+		if (menuOptionSelected != 0) {
+			break;
+		}
 	}
 
-	switch (menuOption) {
+	switch (menuOptionSelected) {
 	case 1:
 		while (!player->Table_classExist(initClass)) {
 			system("cls");
@@ -116,6 +122,8 @@ void MENU(playerChar * player) {
 			cin.clear();
 		}
 		player->Player_defineClass(initClass);
+		MENU(player);										//returns to main menu choose
+
 		break;
 	case 2:
 		break;
