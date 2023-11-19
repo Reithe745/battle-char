@@ -85,35 +85,26 @@ void MENUbuild() {
 
 int MENUOptions() {
 
-	int op;
+	int op = 0;
 
-	system("cls");
-	cout << "Wellcome to the game" << endl;
-	cout << "1 - Create new character" << endl;
-	cout << "2 - Play (if no character is selected, a random one will be given)" << endl;
-	cout << "3 - Credits" << endl;
-	cin >> op;
-	cin.clear();
-
-	if (op > 3 or op < 1) {
-		return 0;
+	while (op > 3 or op < 1) {
+		system("cls");
+		cout << "Wellcome to the game" << endl;
+		cout << "1 - Create new character" << endl;
+		cout << "2 - Play (if no character is selected, a random one will be given)" << endl;
+		cout << "3 - Credits" << endl;
+		cin >> op;
+		cin.clear();
 	}
+	
 	return op;
 }
 
 void MENU(playerChar * player) {
 	
 	string initClass = "";
-	int menuOptionSelected = 0;
 
-	while (true) {
-		menuOptionSelected = MENUOptions();
-		if (menuOptionSelected != 0) {
-			break;
-		}
-	}
-
-	switch (menuOptionSelected) {
+	switch (MENUOptions()) {
 	case 1:
 		while (!player->Table_classExist(initClass)) {
 			system("cls");
