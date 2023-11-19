@@ -126,6 +126,7 @@ public:
 		cout << "Class: " << playClass << endl;
 		cout << "Life: " << playLife << endl;
 		cout << "Damage: " << playDamage << endl;
+		system("pause");
 	}
 };
 
@@ -133,16 +134,24 @@ void MENUbuild() {
 	cout << "Wellcome to the game, just choose a class from the list below and start playing" << endl << endl;
 }
 
+void MENUCredits() {
+	system("cls");
+	cout << "Developed by Reithe" << endl;
+	cout << "This is a study project to show use of classes and objects" << endl;
+	system("pause");
+}
+
 int MENUOptions() {
 
 	int op = 0;
 
-	while (op > 3 or op < 1) {
+	while (op > 4 or op < 1) {
 		system("cls");
 		cout << "Wellcome to the game" << endl;
 		cout << "1 - Create new character" << endl;
-		cout << "2 - Play (if no character is selected, a random one will be given)" << endl;
-		cout << "3 - Credits" << endl;
+		cout << "2 - Character information" << endl;
+		cout << "3 - Play (if no character is selected, a random one will be given)" << endl;
+		cout << "4 - Credits" << endl;
 		cin >> op;
 		cin.ignore();
 	}
@@ -160,8 +169,13 @@ void MENU(playerChar * player) {
 		break;
 	case 2:
 		player->Player_printInfo();
+		MENU(player);
 		break;
-	case 3:
+	case 3 :
+		break;
+	case 4:
+		MENUCredits();
+		MENU(player);
 		break;
 	default:
 		break;
