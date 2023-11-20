@@ -31,19 +31,6 @@ public:
 		else {
 			return true;
 		}
-		/*for (int i = 0; i < tableClasses.size(); i++) {
-			if (playClass == tableClasses[i]) {
-				return true;
-			}
-		}
-		if (playClass == "") {
-			return false;
-		}
-		else {
-			system("cls");
-			cout << "INVALID CLASS" << endl << endl;
-			return false;
-		}*/
 	}
 
 	void Table_outputOptions() {
@@ -115,15 +102,6 @@ public:
 		playLife = ClassMap[playClass].LIFE;
 		playDamage = ClassMap[playClass].DAMAGE;
 
-		/*int i;
-
-		for (i = 0; i < tableClasses.size(); i++) {
-			if (playClass == tableClasses[i]) {
-				break;
-			}
-		}
-		playLife = tableStatusByClass[i][0];
-		playDamage = tableStatusByClass[i][1];*/
 	}
 
 	//eliminate player
@@ -152,15 +130,6 @@ public:
 		system("pause");
 	}
 };
-
-//class EnemyChar {
-//public:
-//	string playType;
-//	int playLife;
-//	int	playDamage;
-//	int playXP;
-//
-//};
 
 void MENUbuild() {
 	cout << "Wellcome to the game, just choose a class from the list below and start playing" << endl << endl;
