@@ -19,8 +19,6 @@ public:
 		{"warlock", {30, 40}}, 
 		{"roge", {45, 15}},
 		{"paladin", {80, 10}} };
-	vector<string> tableClasses = { "druid", "mage", "warlock", "roge", "paladin" };
-	int tableStatusByClass[5][2] = { {50, 20}, {40, 30}, {30, 40}, {45, 15}, {80, 10} }; //{LIFE, DAMAGE}
 
 	//validades if class exist in game
 	bool Table_classExist(string playClass) {
@@ -60,7 +58,7 @@ public:
 		string holderName;
 		string confirmYN = "";
 		
-		while (confirmYN != "yes") {
+		while (confirmYN != "Y" && confirmYN != "y" && confirmYN != "yes" && confirmYN != "YES") {
 			
 			system("cls");
 			cout << "Choose a name for the character: " << endl;
@@ -68,7 +66,7 @@ public:
 
 			system("cls");
 			cout << "Confirm this name: " << holderName << endl;
-			cout << "[yes][no]" << endl;
+			cout << "[Y][N]" << endl;
 			cin >> confirmYN;
 			cin.ignore();
 		}
