@@ -1,18 +1,37 @@
 #include <iostream>
 #include <string>
 #include <vector>
+#include <map>
 
 using namespace std;
 
+struct Stats
+{
+	int LIFE;
+	int DAMAGE;
+};
+
 class databaseInfo {
 public:
+	map < string, Stats> ClassMap = { 
+		{"druid", {50, 20}},
+		{"mage", {40, 30}}, 
+		{"warlock", {30, 40}}, 
+		{"roge", {45, 15}},
+		{"paladin", {80, 10}} };
 	vector<string> tableClasses = { "druid", "mage", "warlock", "roge", "paladin" };
 	int tableStatusByClass[5][2] = { {50, 20}, {40, 30}, {30, 40}, {45, 15}, {80, 10} }; //{LIFE, DAMAGE}
 
 	//validades if class exist in game
 	bool Table_classExist(string playClass) {
 
-		for (int i = 0; i < tableClasses.size(); i++) {
+		if (ClassMap.find(playClass) == ClassMap.end()) {
+			return false;
+		}
+		else {
+			return true;
+		}
+		/*for (int i = 0; i < tableClasses.size(); i++) {
 			if (playClass == tableClasses[i]) {
 				return true;
 			}
@@ -24,17 +43,17 @@ public:
 			system("cls");
 			cout << "INVALID CLASS" << endl << endl;
 			return false;
-		}
+		}*/
 	}
 
 	void Table_outputOptions() {
 		
 		cout << "Classes in game:" << endl;
 
-		for (int i = 0; i < tableClasses.size(); i++) {
-			cout << " > " << tableClasses[i] << endl;
-			cout << "   - Life: " << tableStatusByClass[i][0] << endl;
-			cout << "   - Damage: " << tableStatusByClass[i][1] << endl << endl;
+		for (const auto& i : ClassMap) {
+			cout << " > " << i.first << endl;
+			cout << "   - Life: " << i.second.LIFE << endl;
+			cout << "   - Damage: " << i.second.DAMAGE << endl << endl;
 		}
 	}
 };
@@ -60,6 +79,7 @@ public:
 			cout << "Choose a name for the character: " << endl;
 			getline(cin, holderName);
 
+			system("cls");
 			cout << "Confirm this name: " << holderName << endl;
 			cout << "[yes][no]" << endl;
 			cin >> confirmYN;
@@ -92,7 +112,10 @@ public:
 	//informs the status of each variable of the player object
 	void Player_setupStats() {
 
-		int i;
+		playLife = ClassMap[playClass].LIFE;
+		playDamage = ClassMap[playClass].DAMAGE;
+
+		/*int i;
 
 		for (i = 0; i < tableClasses.size(); i++) {
 			if (playClass == tableClasses[i]) {
@@ -100,7 +123,7 @@ public:
 			}
 		}
 		playLife = tableStatusByClass[i][0];
-		playDamage = tableStatusByClass[i][1];
+		playDamage = tableStatusByClass[i][1];*/
 	}
 
 	//eliminate player
@@ -129,6 +152,15 @@ public:
 		system("pause");
 	}
 };
+
+//class EnemyChar {
+//public:
+//	string playType;
+//	int playLife;
+//	int	playDamage;
+//	int playXP;
+//
+//};
 
 void MENUbuild() {
 	cout << "Wellcome to the game, just choose a class from the list below and start playing" << endl << endl;
