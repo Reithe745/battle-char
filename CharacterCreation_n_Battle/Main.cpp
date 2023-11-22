@@ -140,44 +140,40 @@ void MENUCredits() {
 	system("pause");
 }
 
-int MENUOptions() {
+void MENU(playerChar * player) {
 
-	int op = 0;
+	int op = 5;
 
-	while (op > 4 or op < 1) {
+	while (op != 0) {
 		system("cls");
-		cout << "Wellcome to the game" << endl;
+		cout << "Wellcome to the game" << endl << endl;
 		cout << "1 - Create new character" << endl;
 		cout << "2 - Character information" << endl;
 		cout << "3 - Play (if no character is selected, a random one will be given)" << endl;
 		cout << "4 - Credits" << endl;
+		cout << "0 - EXIT" << endl;
 		cin >> op;
 		cin.ignore();
-	}
-	
-	return op;
-}
 
-void MENU(playerChar * player) {
-
-	switch (MENUOptions()) {
-	case 1:
-		player->Player_defineName();
-		player->Player_defineClass();
-		MENU(player);
-		break;
-	case 2:
-		player->Player_printInfo();
-		MENU(player);
-		break;
-	case 3 :
-		break;
-	case 4:
-		MENUCredits();
-		MENU(player);
-		break;
-	default:
-		break;
+		switch (op) {
+		case 1:
+			player->Player_defineName();
+			player->Player_defineClass();
+			MENU(player);
+			break;
+		case 2:
+			player->Player_printInfo();
+			MENU(player);
+			break;
+		case 3 :
+			break;
+		case 4:
+			MENUCredits();
+			MENU(player);
+			break;
+		default:
+			break;
+		}
 	}
 }
 
