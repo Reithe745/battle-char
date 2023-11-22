@@ -46,9 +46,9 @@ public:
 class playerChar : public databaseInfo{
 
 private:
-	string playClass, playName;
-	int playLife = 0;
-	int	playDamage = 0;
+	string playClass;
+	string playName;
+	Stats playStats;
 	int playXP = 0;
 
 public:
@@ -97,20 +97,20 @@ public:
 	//informs the status of each variable of the player object
 	void Player_setupStats() {
 
-		playLife = ClassMap[playClass].LIFE;
-		playDamage = ClassMap[playClass].DAMAGE;
+		playStats.LIFE = ClassMap[playClass].LIFE;
+		playStats.DAMAGE = ClassMap[playClass].DAMAGE;
 
 	}
 
 	//eliminate player
 	void Player_kill() {
 		playClass = "";
-		playLife = 0, playDamage = 0;
+		playStats.LIFE = 0, playStats.DAMAGE = 0;
 	}
 
 	//checks if player has name and life
 	bool Player_isAlive() {
-		if (playClass == "" && playLife == 0) {		//player alive = true
+		if (playClass == "" && playStats.LIFE == 0) {		//player alive = true
 			return false;
 		}
 		else {
@@ -123,8 +123,8 @@ public:
 		system("cls");
 		cout << "Name: " << playName << endl;
 		cout << "Class: " << playClass << endl;
-		cout << "Life: " << playLife << endl;
-		cout << "Damage: " << playDamage << endl;
+		cout << "Life: " << playStats.LIFE << endl;
+		cout << "Damage: " << playStats.DAMAGE << endl;
 		system("pause");
 	}
 };
@@ -142,9 +142,9 @@ void MENUCredits() {
 
 void MENU(playerChar * player) {
 
-	int op = 5;
+	int op;
 
-	while (op != 0) {
+	while (true) {
 		system("cls");
 		cout << "Wellcome to the game" << endl << endl;
 		cout << "1 - Create new character" << endl;
@@ -165,13 +165,15 @@ void MENU(playerChar * player) {
 			player->Player_printInfo();
 			MENU(player);
 			break;
-		case 3 :
+		case 3:		//TODO - add game battle mechanic
+			MENU(player);
 			break;
 		case 4:
 			MENUCredits();
 			MENU(player);
 			break;
 		default:
+			return; //ends program
 			break;
 		}
 	}
