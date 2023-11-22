@@ -4,7 +4,7 @@
 #include <map>
 
 using namespace std;
-//test git files
+
 struct Stats
 {
 	int LIFE;
