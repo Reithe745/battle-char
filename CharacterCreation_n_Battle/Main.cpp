@@ -13,17 +13,29 @@ struct Stats
 
 class databaseInfo {
 public:
-	map < string, Stats> ClassMap = { 
+	//maps the player classes in game
+	map < string, Stats> PlayerClassMap = { 
 		{"druid", {50, 20}},
-		{"mage", {40, 30}}, 
-		{"warlock", {30, 40}}, 
+		{"mage", {40, 30}},
+		{"warlock", {30, 40}},
 		{"roge", {45, 15}},
 		{"paladin", {80, 10}} };
 
-	//validades if class exist in game
-	bool Table_classExist(string playClass) {
+	//maps the enemies classes in game
+	map < string, Stats > EnemyClassMap = {
+		{"Demon",{100, 30}},
+		{"Skeleton",{10, 3}},
+		{"Zombie",{10, 5}},
+		{"Orck",{50, 10}},
+		{"Ghost",{10, 20}},
+		{"Goblin",{15, 5}},
+		{"Giant",{60, 40}},
+		{"Rat",{5, 2}}, };
 
-		if (ClassMap.find(playClass) == ClassMap.end()) {
+	//validades if class exist in game
+	bool Table_PlayerClassExist(string playClass) {
+
+		if (PlayerClassMap.find(playClass) == PlayerClassMap.end()) {
 			return false;
 		}
 		else {
@@ -31,11 +43,11 @@ public:
 		}
 	}
 
-	void Table_outputOptions() {
+	void Table_PlayerOutputOptions() {
 		
 		cout << "Classes in game:" << endl;
 
-		for (const auto& i : ClassMap) {
+		for (const auto& i : PlayerClassMap) {
 			cout << " > " << i.first << endl;
 			cout << "   - Life: " << i.second.LIFE << endl;
 			cout << "   - Damage: " << i.second.DAMAGE << endl << endl;
@@ -80,11 +92,11 @@ public:
 		
 		string holderClassChoosen = "";
 
-		while (!Table_classExist(holderClassChoosen)) {
+		while (!Table_PlayerClassExist(holderClassChoosen)) {
 			
 			system("cls");
 
-			Table_outputOptions();
+			Table_PlayerOutputOptions();
 
 			cin >> holderClassChoosen;
 			cin.clear();
@@ -97,8 +109,8 @@ public:
 	//informs the status of each variable of the player object
 	void Player_setupStats() {
 
-		playStats.LIFE = ClassMap[playClass].LIFE;
-		playStats.DAMAGE = ClassMap[playClass].DAMAGE;
+		playStats.LIFE = PlayerClassMap[playClass].LIFE;
+		playStats.DAMAGE = PlayerClassMap[playClass].DAMAGE;
 
 	}
 
